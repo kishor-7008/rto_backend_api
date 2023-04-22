@@ -60,7 +60,7 @@ app.post('/api/sensor-data',async(req,res)=>{
   if(Object.keys(req.body).length == 0){
     return res.status(201).send({status:false, message:"Body data is empty"})
   }
-  let data = await users.findOneAndUpdate({_id:"6443cbfa6affb1570c723595"}, {test:{$push:req.body}}, {new:true})
+  let data = await users.findOneAndUpdate({_id:"6443cbfa6affb1570c723595"}, {$set:{test:req.body}}, {new:true})
   res.send(data)
   
 })
