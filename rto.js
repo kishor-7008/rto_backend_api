@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const expressSession = require('express-session');
 const axios = require('axios')
+const cors=require("cors")
 const users = require('./userSchema');
 const multer = require('multer');
 const bcrypt = require('bcryptjs');
@@ -11,6 +12,7 @@ const http = require('http').createServer(app)
 const socketIo =require('socket.io')(http)
 app.use(express.json())
 app.use(multer().any())
+app.use(cors())
 app.use(expressSession({
 	"key": "user_id",
 	"secret": "User secret object ID",
@@ -61,6 +63,9 @@ app.post('/api/sensor-data',async(req,res)=>{
   let data = await users.findOneAndUpdate({_id:"64439020f62d862ae225b4ee"}, {test:{$push:req.body}}, {new:true})
   res.send(data)
   
+})
+app.get("/get/data",(req,res)=>{
+  res.send("Hello")
 })
 
 app.listen(process.env.Port||8080, ()=>{
