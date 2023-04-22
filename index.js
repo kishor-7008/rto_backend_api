@@ -19,7 +19,7 @@ app.use(expressSession({
 	"resave": true,
 	"saveUninitialized": true
 }));
-mongoose.connect('mongodb://127.0.0.1:27017/rto?directConnection=true&serverSelectionTimeoutMS=10000&appName=mongosh+1.6.2',{
+mongoose.connect('mongodb+srv://kishor7008:kishor7008@cluster0.q1t2i8w.mongodb.net/test',{
     useNewUrlParser:true
 })
 .then(()=>console.log('Db is connected'))
@@ -60,7 +60,7 @@ app.post('/api/sensor-data',async(req,res)=>{
   if(Object.keys(req.body).length == 0){
     return res.status(201).send({status:false, message:"Body data is empty"})
   }
-  let data = await users.findOneAndUpdate({_id:"64439020f62d862ae225b4ee"}, {test:{$push:req.body}}, {new:true})
+  let data = await users.findOneAndUpdate({_id:"6443cbfa6affb1570c723595"}, {test:{$push:req.body}}, {new:true})
   res.send(data)
   
 })
